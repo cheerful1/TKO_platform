@@ -36,4 +36,19 @@ public interface EmployeeService {
      * @param status 状态 0：禁用 1：启用
      */
     void startOrStopEmployee(Long id, Integer status);
+
+
+    /**
+     * 根据id查询员工信息
+     * @param id 员工id
+     * @return 员工信息
+     */
+    Employee selectById(Long id);
+
+    /**
+     * 更新员工信息
+     * @param employeedto 员工信息
+     *
+     */
+    void updateEmployee(EmployeeDTO employeedto);
 }
