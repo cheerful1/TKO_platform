@@ -99,9 +99,13 @@ public class EmployeeController {
     public Result<PageResult>getAllEmployeeByPage(EmployeePageQueryDTO employeePageQuery ) {
         log.info("分页查询员工：{}", employeePageQuery);
         PageResult pageResult = employeeService.getAllEmployeeByPage(employeePageQuery);
-
         return Result.success(pageResult);
     }
-    
 
+    @PostMapping("/status/{status}")
+    public Result startOrStopEmployee(Long id, @PathVariable("status") Integer status) {
+        log.info("修改员工状态：id={}, status={}", id, status);
+        employeeService.startOrStopEmployee(id, status);
+        return Result.success();
+    }
 }
