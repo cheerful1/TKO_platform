@@ -50,4 +50,11 @@ public interface DishMapper {
      * @param ids
      */
     void deleteBatch(List<Long> ids);
+
+    /**
+     * 更新
+     * @param dish
+     */
+    @AutoFill(OperationType.UPDATE)
+    void updateByPrimaryKeySelective(Dish dish);
 }
