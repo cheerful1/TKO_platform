@@ -13,18 +13,19 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  */
 @Configuration
 @Slf4j
-public class RedisConfuguration {
+public class RedisConfiguration {
     @Bean
-    public RedisTemplate  redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+    public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory){
+        log.info("开始创建redis模板对象...");
         RedisTemplate redisTemplate = new RedisTemplate();
-        // 设置连接工厂对象
+        //设置redis的连接工厂对象
         redisTemplate.setConnectionFactory(redisConnectionFactory);
-        // 设置序列化方式
+        //设置redis key的序列化器
         redisTemplate.setKeySerializer(new StringRedisSerializer());
-
-        redisTemplate.setValueSerializer(org.springframework.data.redis.serializer.StringRedisSerializer.UTF_8);
+        //设置redis value的序列化器
+        FastJson2JsonRedisSerializer<Object> serializer = new FastJson2JsonRedisSerializer<>(Object.class);
+        redisTemplate.setValueSerializer(serializer);
         return redisTemplate;
     }
-
 
 }

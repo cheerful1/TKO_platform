@@ -57,4 +57,11 @@ public interface DishMapper {
      */
     @AutoFill(OperationType.UPDATE)
     void updateByPrimaryKeySelective(Dish dish);
+
+    /**
+     * 查询列表
+     * @param dish
+     * @return
+     */
+    List<Dish> list(Dish dish);
 }
